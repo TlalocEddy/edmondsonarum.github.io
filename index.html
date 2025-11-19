@@ -5,6 +5,27 @@
   <title>Entering the Understory · Edmondson Arum</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  z-index: 10;
+}
+
+nav a {
+  color: #f4f1eb;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+nav a:hover {
+  opacity: 1;
+}
     body {
       margin: 0;
       min-height: 100vh;
@@ -35,6 +56,14 @@
   </style>
 </head>
 <body>
+  <nav>
+    <a href="analog.html">Analog</a>
+    <a href="macro.html">Macro</a>
+    <a href="texts.html">Texts</a>
+    <a href="archive.html">Archive</a>
+    <a href="shop.html">Tianguis</a>
+    <a href="about.html">About</a>
+  </nav>
   <main class="frame">
     <h1>ENTERING THE UNDERSTORY</h1>
     <p>This is the beginning of the artisanal website of <strong>Edmondson Arum</strong>.</p>
