@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Edmondson Arum — Photography</title>
+  <title>Edmondson Arum — Textos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -11,17 +11,20 @@
       background: #0b0b0b;
       color: #f5f5f5;
     }
+
     header {
       padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
+
     .logo {
       font-size: 1.1rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
@@ -30,18 +33,55 @@
       text-transform: uppercase;
       color: #cccccc;
     }
+
     nav a:hover {
       color: #ffffff;
     }
+
+    /* Selector de idioma */
+    .lang {
+      display: inline-flex;
+      gap: 0.5rem;
+      margin-left: 1.5rem;
+    }
+
+    .lang a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cccccc;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .lang a:hover {
+      color: #ffffff;
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    .lang a.active {
+      color: #0b0b0b;
+      background: #f5f5f5;
+      border-color: #f5f5f5;
+    }
+
+    .lang a.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
     main {
       padding: 4rem 3rem;
       max-width: 960px;
     }
+
     h1 {
       font-weight: 400;
       font-size: 2.4rem;
       margin-bottom: 0.5rem;
     }
+
     p.lead {
       max-width: 32rem;
       line-height: 1.6;
@@ -50,27 +90,33 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">Edmondson Arum</div>
+
     <nav>
-      <a href="analog.html">Analog</a>
+      <a href="analog.html">Analógico</a>
       <a href="macro.html">Macro / iPhone</a>
-      <a href="archive.html">Archive</a>
-      <a href="texts.html">Texts</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
+      <a href="archive.html">Archivo</a>
+      <a href="texts.html">Textos</a>
+      <a href="shop.html">Tienda</a>
+      <a href="about.html">Acerca de</a>
     </nav>
+
+    <div class="lang">
+      <a class="active" href="texts.html">ES</a>
+      <a class="disabled" href="#">EN</a>
+      <a class="disabled" href="#">FR</a>
+    </div>
   </header>
 
   <main>
-    <h1>Photography &amp; Displacements</h1>
+    <h1>Textos</h1>
     <p class="lead">
-      Black &amp; white film, macro experiments, and visual notes from a life
-      between territories. Analog photography as memoria viva y descolonial,
-      entre ciencia y poesía.
+      Manifiestos, fragmentos y notas de proceso.
+      Pensamiento visual entre ciencia, memoria y territorio.
     </p>
-    <!-- Luego aquí podemos poner una primera foto destacada o un pequeño grid -->
   </main>
 </body>
 </html>
