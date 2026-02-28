@@ -2,37 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Edmondson Arum — Photography</title>
+  <title>Edmondson Arum — Analógico</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
       margin: 0;
-  background: #0b0b0b;
-  color: #dddddd;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  text-align: center;
-    } 
-  .statement {
-    max-width: 620px;
-    line-height: 2.1;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-  }
-  .statement p {
-    margin: 1.4rem 0;
-  }
-  .statement em {
-    font-style: italic;
-    color: #ffffff;
-  }
+      background: #0b0b0b;
+      color: #dddddd;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+
+    .statement {
+      max-width: 620px;
+      line-height: 2.1;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .statement p {
+      margin: 1.4rem 0;
+    }
+
+    .statement em {
+      font-style: italic;
+      color: #ffffff;
+    }
+
+    /* Botón de regreso */
+
+    .back {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #777777;
+    }
+
+    .back:hover {
+      color: #ffffff;
+    }
+
   </style>
 </head>
+
 <body>
- <div class="statement">
+
+  <a href="index.html" class="back">← Inicio</a>
+
+  <div class="statement">
     <p>
       Trabajo con película porque me obliga a detenerme.
       La luz entra, toca la materia, y el tiempo queda inscrito.
@@ -48,5 +75,6 @@
       <em>respira.</em>
     </p>
   </div>
+
 </body>
 </html>
