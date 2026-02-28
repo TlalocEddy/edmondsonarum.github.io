@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Edmondson Arum — Photography</title>
+  <title>Edmondson Arum — Tienda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
       margin: 0;
@@ -11,17 +12,20 @@
       background: #0b0b0b;
       color: #f5f5f5;
     }
+
     header {
       padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
     }
+
     .logo {
       font-size: 1.1rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
@@ -30,47 +34,295 @@
       text-transform: uppercase;
       color: #cccccc;
     }
+
     nav a:hover {
       color: #ffffff;
     }
+
+    .lang {
+      display: inline-flex;
+      gap: 0.5rem;
+      margin-left: 1.5rem;
+    }
+
+    .lang a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cccccc;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .lang a:hover {
+      color: #ffffff;
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    .lang a.active {
+      color: #0b0b0b;
+      background: #f5f5f5;
+      border-color: #f5f5f5;
+    }
+
+    .lang a.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
     main {
       padding: 4rem 3rem;
-      max-width: 960px;
+      max-width: 1040px;
     }
+
     h1 {
       font-weight: 400;
       font-size: 2.4rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
     }
+
     p.lead {
-      max-width: 32rem;
-      line-height: 1.6;
+      max-width: 46rem;
+      line-height: 1.7;
       font-size: 1rem;
       color: #d0d0d0;
+      margin-top: 0;
+    }
+
+    .note {
+      margin-top: 2rem;
+      max-width: 48rem;
+      line-height: 1.85;
+      color: #e5e5e5;
+    }
+
+    .note p { margin: 1rem 0; }
+
+    .divider {
+      margin: 3rem 0 2.25rem 0;
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #121212;
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 1.25rem;
+    }
+
+    .thumb {
+      height: 220px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5a5a5a;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      margin: 0 0 0.35rem 0;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: #bfbfbf;
+      line-height: 1.6;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .tagrow {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.45rem;
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #d6d6d6;
+      opacity: 0.9;
+    }
+
+    .tag.sold { opacity: 0.45; }
+    .tag.onrequest { opacity: 0.75; }
+
+    .cta {
+      margin-top: 1.1rem;
+      display: inline-block;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cfcfcf;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .cta:hover {
+      color: #ffffff;
+      border-bottom-color: rgba(255,255,255,0.45);
+    }
+
+    .contactbox {
+      margin-top: 3rem;
+      max-width: 52rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: #101010;
+    }
+
+    .contactbox h2 {
+      font-weight: 400;
+      margin: 0 0 0.75rem 0;
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+    }
+
+    .contactbox p {
+      margin: 0.75rem 0;
+      line-height: 1.85;
+      color: #d0d0d0;
+    }
+
+    .mail {
+      display: inline-block;
+      margin-top: 0.35rem;
+      text-decoration: none;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255,255,255,0.25);
+      padding-bottom: 0.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .mail:hover {
+      border-bottom-color: rgba(255,255,255,0.55);
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo">Edmondson Arum</div>
+
     <nav>
-      <a href="analog.html">Analog</a>
+      <a href="analog.html">Analógico</a>
       <a href="macro.html">Macro / iPhone</a>
-      <a href="archive.html">Archive</a>
-      <a href="texts.html">Texts</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
+      <a href="archive.html">Archivo</a>
+      <a href="texts.html">Textos</a>
+      <a href="shop.html">Tienda</a>
+      <a href="about.html">Acerca de</a>
     </nav>
+
+    <div class="lang">
+      <a class="active" href="shop.html">ES</a>
+      <a class="disabled" href="#">EN</a>
+      <a class="disabled" href="#">FR</a>
+    </div>
   </header>
 
   <main>
-    <h1>Photography &amp; Displacements</h1>
+    <h1>Tienda</h1>
+
     <p class="lead">
-      Black &amp; white film, macro experiments, and visual notes from a life
-      between territories. Analog photography as memoria viva y descolonial,
-      entre ciencia y poesía.
+      Impresiones fine art y ediciones limitadas. Aquí no hay prisa:
+      las imágenes se eligen, se conversan, se cuidan.
     </p>
-    <!-- Luego aquí podemos poner una primera foto destacada o un pequeño grid -->
+
+    <section class="note">
+      <p>
+        Trabajo principalmente con fotografía analógica en blanco y negro y con exploraciones macro.
+        Las piezas disponibles se imprimen en papel de calidad de archivo (algodón) y se entregan con
+        certificado y firma (según la edición).
+      </p>
+      <p>
+        Si una imagen te llama, escríbeme. Te comparto tamaños, disponibilidad, precios y tiempos de entrega.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="grid" aria-label="Ediciones disponibles (muestras)">
+      <!-- Tarjeta 1 -->
+      <article class="card">
+        <div class="thumb">Obra / Imagen</div>
+        <h3 class="title">Edición 01 — (título por definir)</h3>
+        <p class="meta">
+          Serie: Analógico<br>
+          Tamaños: 20×25 / 30×40 / 50×60<br>
+          Papel: algodón, calidad museo
+        </p>
+        <div class="tagrow">
+          <span class="tag onrequest">Por encargo</span>
+          <span class="tag">Edición limitada</span>
+        </div>
+        <a class="cta" href="about.html">Solicitar disponibilidad</a>
+      </article>
+
+      <!-- Tarjeta 2 -->
+      <article class="card">
+        <div class="thumb">Obra / Imagen</div>
+        <h3 class="title">Edición 02 — (título por definir)</h3>
+        <p class="meta">
+          Serie: Macro<br>
+          Tamaños: 20×25 / 30×40<br>
+          Papel: algodón, calidad museo
+        </p>
+        <div class="tagrow">
+          <span class="tag">Disponible</span>
+          <span class="tag">Edición limitada</span>
+        </div>
+        <a class="cta" href="about.html">Solicitar disponibilidad</a>
+      </article>
+
+      <!-- Tarjeta 3 -->
+      <article class="card">
+        <div class="thumb">Obra / Imagen</div>
+        <h3 class="title">Edición 03 — (título por definir)</h3>
+        <p class="meta">
+          Serie: Archivo<br>
+          Tamaños: 20×25<br>
+          Papel: algodón, calidad museo
+        </p>
+        <div class="tagrow">
+          <span class="tag sold">Agotado</span>
+          <span class="tag">Edición limitada</span>
+        </div>
+        <a class="cta" href="about.html">Preguntar por piezas similares</a>
+      </article>
+    </section>
+
+    <section class="contactbox">
+      <h2>Solicitudes y encargos</h2>
+      <p>
+        Para comprar una pieza, solicitar una edición, o preguntar por una imagen específica,
+        envíame un mensaje con: <em>título / sección / tamaño deseado / ciudad</em>.
+      </p>
+      <p>
+        Correo:
+        <a class="mail" href="mailto:edmondsonarum@proton.me">edmondsonarum@proton.me</a>
+      </p>
+      <p style="opacity:0.75;">
+        (Si aún no tienes correo público, dime cuál usar y lo cambio.)
+      </p>
+    </section>
+
   </main>
 </body>
 </html>
