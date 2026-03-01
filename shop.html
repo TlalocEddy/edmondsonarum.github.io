@@ -1,38 +1,687 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Edmondson Arum — Tienda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Edmondson Arum — Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root{
+      /* Base (negro-azulado) */
+      --bg: #070b12;
+      --panel: rgba(10, 18, 32, 0.72);
+      --panel2: rgba(8, 14, 26, 0.55);
+      --border: rgba(92, 167, 255, 0.18);
+
+      /* Texto */
+      --text: rgba(245, 248, 255, 0.92);
+      --muted: rgba(195, 214, 238, 0.78);
+      --dim: rgba(195, 214, 238, 0.58);
+
+      /* Azules (acento) */
+      --accent: #5ca7ff;
+      --accent2: #2f7de1;
+      --glow: rgba(92, 167, 255, 0.35);
+
+      /* Layout */
+      --max: 1120px;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(92,167,255,0.10), transparent 55%),
+        radial-gradient(900px 600px at 85% 35%, rgba(47,125,225,0.10), transparent 58%),
+        radial-gradient(800px 700px at 45% 95%, rgba(92,167,255,0.08), transparent 60%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: rgba(7, 11, 18, 0.55);
+      border-bottom: 1px solid rgba(92,167,255,0.12);
+    }
+
+    .header-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.1rem 1.4rem;
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo{
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+      gap: 0.9rem 1.2rem;
+    }
+
+    nav a{
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.35rem 0.15rem;
+      position: relative;
+      transition: color .2s ease;
+    }
+
+    nav a:hover{ color: var(--text); }
+
+    nav a.active{
+      color: var(--text);
+    }
+    nav a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-0.25rem;
+      height:1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      box-shadow: 0 0 18px var(--glow);
+    }
+
+    /* Page */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2.4rem 1.4rem 3.2rem;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 1.4rem;
+      align-items: start;
+      margin-top: 0.8rem;
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg, rgba(10,18,32,0.78), rgba(8,14,26,0.58));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.6rem 1.4rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+
+    .kicker{
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.8rem;
+    }
+
+    h1{
+      margin: 0 0 0.8rem;
+      font-size: clamp(1.4rem, 2.2vw, 2.05rem);
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      font-weight: 560;
+    }
+
+    .intro{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1rem;
+      max-width: 72ch;
+    }
+
+    .aside{
+      background: linear-gradient(180deg, rgba(10,18,32,0.62), rgba(8,14,26,0.42));
+      border: 1px solid rgba(92,167,255,0.14);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.2rem 1.1rem;
+    }
+
+    .aside h2{
+      margin: 0 0 0.75rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 560;
+    }
+
+    .meta{
+      display:grid;
+      gap: 0.55rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .meta b{
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: .45rem;
+      padding: .38rem .55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(92,167,255,0.20);
+      background: rgba(92,167,255,0.07);
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-top: 0.8rem;
+    }
+
+    .dot{
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--glow);
+      display:inline-block;
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 2.1rem;
+    }
+
+    .section-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 0 0 0.9rem;
+    }
+
+    .section-title h3{
+      margin:0;
+      font-size: 0.95rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .section-title p{
+      margin:0;
+      font-size: 0.9rem;
+      color: var(--dim);
+      letter-spacing: 0.04em;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(10,18,32,0.68), rgba(8,14,26,0.46));
+      border: 1px solid rgba(92,167,255,0.15);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 34px rgba(0,0,0,0.38);
+      transition: transform .18s ease, border-color .18s ease;
+      display:flex;
+      flex-direction: column;
+      min-height: 250px;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(92,167,255,0.28);
+    }
+
+    .thumb{
+      height: 110px;
+      background:
+        radial-gradient(420px 160px at 30% 30%, rgba(92,167,255,0.16), transparent 60%),
+        radial-gradient(420px 160px at 75% 55%, rgba(47,125,225,0.12), transparent 62%),
+        rgba(7, 11, 18, 0.35);
+      border-bottom: 1px solid rgba(92,167,255,0.12);
+    }
+
+    .card-body{
+      padding: 1.05rem 1.05rem 1.0rem;
+      display:flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      flex: 1;
+    }
+
+    .card h4{
+      margin:0;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .specs{
+      margin: 0;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      color: var(--dim);
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .specs span{
+      padding: 0.28rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(92,167,255,0.14);
+      background: rgba(92,167,255,0.05);
+    }
+
+    .card-footer{
+      padding: 0.9rem 1.05rem 1.1rem;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-top: 1px solid rgba(92,167,255,0.10);
+      background: rgba(8, 14, 26, 0.35);
+    }
+
+    .price{
+      font-size: 0.95rem;
+      color: var(--text);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: .45rem;
+      text-decoration:none;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(92,167,255,0.30);
+      color: var(--text);
+      background: rgba(92,167,255,0.10);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(92,167,255,0.14);
+      border-color: rgba(92,167,255,0.42);
+    }
+
+    .btn.secondary{
+      background: transparent;
+      border: 1px solid rgba(195,214,238,0.18);
+      color: var(--muted);
+    }
+
+    .btn.secondary:hover{
+      border-color: rgba(92,167,255,0.28);
+      color: var(--text);
+    }
+
+    /* Note / policies */
+    .note{
+      margin-top: 1.4rem;
+      background: linear-gradient(180deg, rgba(10,18,32,0.58), rgba(8,14,26,0.40));
+      border: 1px solid rgba(92,167,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      color: var(--muted);
+      line-height: 1.85;
+      font-size: 0.95rem;
+    }
+
+    .note a{ color: var(--text); }
+    .note a:hover{ color: var(--accent); }
+
+    footer{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.6rem 1.4rem 2.4rem;
+      color: var(--dim);
+      font-size: 0.86rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(92,167,255,0.10);
+    }
+
+    footer span{
+      text-transform:none;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 620px){
+      .header-inner{ align-items: flex-start; }
+      nav{ justify-content: flex-start; }
+      .grid{ grid-template-columns: 1fr; }
+      .card-footer{ flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 
-<body class="shop">
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">Edmondson Arum</a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="analog.html">Analógica</a>
+        <a href="macro.html">Macro</a>
+        <a href="textos.html">Textos</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="archivo.html">Archivo</a>
+        <a class="active" href="shop.html">Shop</a>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <div class="logo">Edmondson Arum</div>
-  <nav>
-    <a href="analog.html">Analógico</a>
-    <a href="macro.html">Macro</a>
-    <a href="archive.html">Archivo</a>
-    <a href="texts.html">Textos</a>
-    <a href="shop.html">Tienda</a>
-    <a href="about.html">Acerca de</a>
-  </nav>
-</header>
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="kicker">Ediciones / obra / piezas</p>
+        <h1>Shop</h1>
+        <p class="intro">
+          Aquí la fotografía deja de ser “imagen” y se vuelve <em>objeto</em>: papel, grano, borde, respiración.
+          Trabajo en tirajes pequeños, con variaciones inevitables—porque lo vivo no se repite.
+          Si algo te llama, escríbeme: prefiero el intercambio directo, casi epistolar, como quien
+          compra una pieza y también adopta un fragmento de tiempo.
+        </p>
+        <div class="badge"><span class="dot"></span> Envíos y entregas por mensaje</div>
+      </div>
 
-<main>
-  <h1>TIENDA</h1>
+      <aside class="aside">
+        <h2>Cómo funciona</h2>
+        <div class="meta">
+          <div><b>1)</b> Elige una pieza</div>
+          <div><b>2)</b> Da clic en “Solicitar”</div>
+          <div><b>3)</b> Confirmamos disponibilidad, envío y pago</div>
+          <div><b>Pagos:</b> transferencia / efectivo (entrega en CDMX) / otros por acuerdo</div>
+        </div>
+      </aside>
+    </section>
 
-  <p>
-    Impresiones en edición limitada, piezas seleccionadas y objetos de archivo.
-    La compra aquí no es consumo rápido: es una forma de coleccionar tiempo.
-  </p>
+    <!-- PRINTS -->
+    <section class="section" id="prints">
+      <div class="section-title">
+        <h3>Prints</h3>
+        <p>Obra impresa / edición limitada</p>
+      </div>
 
-  <p>
-    (Próximamente) — formatos, papeles, certificación y envíos.
-  </p>
-</main>
+      <div class="grid">
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Serie Analógica — Tiraje pequeño</h4>
+            <p class="desc">
+              Impresión fine art (o baritado, según disponibilidad). Firmada.
+              Variaciones mínimas: cada copia conserva su propio pulso.
+            </p>
+            <p class="specs">
+              <span>Edición: 10</span>
+              <span>Firma</span>
+              <span>Certificado</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Print%20Serie%20Anal%C3%B3gica&body=Hola%2C%20quiero%20solicitar%20un%20print%20de%20la%20Serie%20Anal%C3%B3gica.%0A%0A-Tama%C3%B1o%20preferido%3A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A-M%C3%A9todo%20de%20contacto%20alterno%20(WhatsApp%2FIG)%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
 
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Contacto — Hoja de archivo</h4>
+            <p class="desc">
+              Impresión más accesible: pieza “de lectura” para coleccionar imágenes como quien colecciona notas.
+            </p>
+            <p class="specs">
+              <span>Abierta</span>
+              <span>A4/A3</span>
+              <span>Papel mate</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Contacto%20-%20Hoja%20de%20archivo&body=Hola%2C%20quiero%20solicitar%20Contacto%20-%20Hoja%20de%20archivo.%0A%0A-Tama%C3%B1o%3A%20A4%20o%20A3%0A-Cantidad%3A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Print con texto — Pie de página</h4>
+            <p class="desc">
+              Imagen + fragmento breve (poesía/nota) impreso como umbral. Una pieza que se lee y se mira.
+            </p>
+            <p class="specs">
+              <span>Edición: 15</span>
+              <span>Firma</span>
+              <span>Texto</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Print%20con%20texto&body=Hola%2C%20quiero%20solicitar%20un%20Print%20con%20texto.%0A%0A-Serie%20o%20foto%20(si%20ya%20la%20viste%20en%20el%20sitio%2FIG)%3A%0A-Tama%C3%B1o%20preferido%3A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ZINES / OBJETOS -->
+    <section class="section" id="zines">
+      <div class="section-title">
+        <h3>Zines & Objetos</h3>
+        <p>Pequeñas constelaciones portátiles</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Zine — “Notas de luz”</h4>
+            <p class="desc">
+              Selección breve de imágenes + texto. Encuadernación sencilla, casi de cuaderno de campo.
+            </p>
+            <p class="specs">
+              <span>Tiraje: 30</span>
+              <span>Numerado</span>
+              <span>Firmado</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Zine%20-%20Notas%20de%20luz&body=Hola%2C%20quiero%20solicitar%20el%20zine%20%E2%80%9CNotas%20de%20luz%E2%80%9D.%0A%0A-Cantidad%3A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Postal / Mini print</h4>
+            <p class="desc">
+              Piezas pequeñas para coleccionar, enviar o enmarcar. Ideales como primera entrada al archivo.
+            </p>
+            <p class="specs">
+              <span>Set x 5</span>
+              <span>Mate</span>
+              <span>Firma</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Set%20Postales&body=Hola%2C%20quiero%20solicitar%20un%20set%20de%20postales%20%2F%20mini%20prints.%0A%0A-Cantidad%20de%20sets%3A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Objeto — “Hoja de contacto”</h4>
+            <p class="desc">
+              Una hoja que funciona como mapa: cuadros, bordes, secuencias.
+              No es “merch”: es una herramienta poética.
+            </p>
+            <p class="specs">
+              <span>A3</span>
+              <span>Papel algodón</span>
+              <span>Edición</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Solicitud%20Objeto%20-%20Hoja%20de%20contacto&body=Hola%2C%20quiero%20solicitar%20el%20objeto%20%E2%80%9CHoja%20de%20contacto%E2%80%9D.%0A%0A-Ciudad%20para%20env%C3%ADo%2Fentrega%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMISIONES -->
+    <section class="section" id="comisiones">
+      <div class="section-title">
+        <h3>Comisiones</h3>
+        <p>Retrato / documento poético / macro</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Retrato analógico</h4>
+            <p class="desc">
+              Sesión íntima, lenta. Pocas fotos, mucha conversación.
+              Entrego selección escaneada + 1 print (opcional).
+            </p>
+            <p class="specs">
+              <span>CDMX / MTY / MTL</span>
+              <span>Película</span>
+              <span>Curaduría</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Comisi%C3%B3n%20-%20Retrato%20anal%C3%B3gico&body=Hola%2C%20me%20interesa%20una%20comisi%C3%B3n%20de%20retrato%20anal%C3%B3gico.%0A%0A-Ciudad%3A%0A-Fechas%20posibles%3A%0A-Idea%20o%20intenci%C3%B3n%20de%20la%20sesión%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Macro — “iPhone Photo”</h4>
+            <p class="desc">
+              Macro como umbral: texturas, organismos, materia. Puede ser para proyecto artístico o archivo científico-visual.
+            </p>
+            <p class="specs">
+              <span>Macro</span>
+              <span>Serie</span>
+              <span>Entrega digital</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Comisi%C3%B3n%20-%20Macro%20iPhone%20Photo&body=Hola%2C%20me%20interesa%20una%20comisi%C3%B3n%20de%20macro%20(iPhone%20Photo).%0A%0A-Uso%20(art%C3%ADstico%2Fdivulgaci%C3%B3n%2Farchivo)%3A%0A-Ciudad%20o%20remoto%3A%0A-Fechas%20posibles%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="thumb" aria-hidden="true"></div>
+          <div class="card-body">
+            <h4>Documento poético</h4>
+            <p class="desc">
+              Acompañamiento visual: procesos, territorios, oficios, ciencia.
+              Una narrativa fotográfica breve con texto (si aplica).
+            </p>
+            <p class="specs">
+              <span>Ensayo</span>
+              <span>Edición</span>
+              <span>Texto</span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="price">Precio: a solicitar</div>
+            <a class="btn" href="mailto:TU_CORREO@DOMINIO.COM?subject=Comisi%C3%B3n%20-%20Documento%20po%C3%A9tico&body=Hola%2C%20me%20interesa%20una%20comisi%C3%B3n%20de%20documento%20po%C3%A9tico.%0A%0A-Tema%2Fterritorio%3A%0A-Fechas%20posibles%3A%0A-Formato%20final%20(print%2Fdigital%2Fzine)%3A%0A%0AGracias.">
+              Solicitar
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <strong>Nota:</strong> si quieres, podemos convertir una compra en un <em>gesto</em>:
+        dedicatoria, pequeño texto, o selección curada según tu espacio.
+        <br />
+        Cambia <code>TU_CORREO@DOMINIO.COM</code> por tu email real.
+        Si prefieres WhatsApp o Instagram, puedo dejar los botones listos también.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Edmondson Arum — <span>Obra / ediciones / comisiones</span>
+  </footer>
 </body>
 </html>
