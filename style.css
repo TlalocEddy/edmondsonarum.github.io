@@ -1,1 +1,49 @@
+/* =========================
+   Edmondson Arum — Base Visual
+   ========================= */
 
+/* Reset suave */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cuerpo del sitio */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #0a1224;  /* azul sotobosque */
+  color: #cfd4db;             /* gris mineral */
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* Header */
+header {
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Navegación */
+nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9aa3ad;
+  transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
