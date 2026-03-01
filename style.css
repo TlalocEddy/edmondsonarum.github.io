@@ -45,7 +45,7 @@ nav a {
 }
 
 nav a:hover {
-  opacity: 0.6;
+  color: #c9a24a;  /* oro viejo */
 }
 main {
   padding: 6rem 4rem;
