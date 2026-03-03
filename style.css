@@ -15,27 +15,21 @@ body {
   color: #cfd4db;
   line-height: 1.6;
   letter-spacing: 0.02em;
+  background-color: #0a1220; /* Fondo base para páginas internas */
 }
-
-/* Variaciones de fondo por sección */
-
-body.home { background-color: #0a1224; }
-body.analog { background-color: #0c1428; }
-body.macro { background-color: #0f1830; }
-body.archive { background-color: #111a33; }
-body.texts { background-color: #0e162b; }
-body.shop { background-color: #141c36; }
-body.about { background-color: #0d1527; }
-
-/* Header */
-
-header {
-  padding: 1.5rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+/* Inicio: más oscuro */
+body.home { 
+  background-color: #070b12; 
 }
-
+/* Todas las secciones internas: mismo azul */
+body.analog,
+body.macro,
+body.archive,
+body.texts,
+body.shop,
+body.about {
+  background-color: #0a1220;
+}
 .logo {
   font-size: 1.1rem;
   letter-spacing: 0.12em;
