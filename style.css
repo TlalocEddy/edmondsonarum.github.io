@@ -8,7 +8,6 @@
   margin: 0;
   padding: 0;
 }
-
 /* Base tipográfica */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -17,60 +16,24 @@ body {
   letter-spacing: 0.02em;
   background-color: #0a1220; /* Fondo base para páginas internas */
 }
+
 /* Inicio: más oscuro */
 body.home { 
   background-color: #070b12; 
 }
+
 /* Todas las secciones internas: mismo azul */
-body.analog,
+body.analogico,
 body.macro,
-body.archive,
-body.texts,
-body.shop,
-body.about {
+body.archivo,
+body.textos,
+body.tienda,
+body.acerca {
   background-color: #0a1220;
-}
-.logo {
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-nav a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #9aa3ad;
-  transition: opacity 0.3s ease;
-}
-
-nav a:hover {
-  opacity: 0.6;
-}
-
-/* Main layout */
-
-main {
-  padding: 6rem 4rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-h1 {
-  font-weight: 400;
-  font-size: 2.6rem;
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-bottom: 1.2rem;
 }
 
 /* Página Analógico centrada */
-
-body.analog {
+body.analogico {
   display: flex;
   justify-content: center;
   align-items: center;
